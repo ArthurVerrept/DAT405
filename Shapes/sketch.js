@@ -14,6 +14,7 @@ function setup() {
 }
   function draw(){
 
+    //setting stroke width
     strokeWeight(5);
 
     //line top left to bottom right
@@ -58,9 +59,5 @@ function setup() {
     //bottom left
     fill(0, 255, 0, 1000);
     ellipse(25, 275, 50, 50);
-
-
-
-
 
 }
