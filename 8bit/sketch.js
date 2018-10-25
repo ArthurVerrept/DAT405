@@ -11,7 +11,9 @@
 function setup() {
   createCanvas(170, 170);
   background(0, 0, 0);
+  frameRate(60);
 }
+
   function draw(){
     //removing stroke
     noStroke();
@@ -76,4 +78,14 @@ function setup() {
     rect(110, 110, 10, 20);
     rect(110, 140, 10, 10);
 
+    //if mouse is pressed reset background and write reset
+    if(mouseIsPressed){
+      background(0, 0, 0);
+      text("RESET", 60, 70);
+    }
+    //else fill a circle with a random colour between red and green on mouse x&y
+    else {
+      fill(random(255), random(255), random(0));
+      rect(mouseX, mouseY, 10, 10);
+}
 }
