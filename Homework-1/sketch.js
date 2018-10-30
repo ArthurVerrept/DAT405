@@ -18,7 +18,7 @@ function setup() {
     //removing stroke
     noStroke();
     //test
-    
+    fill(random(255), random(255), random(255));
     //Line 1
     rect(30, 20, 10, 10);
     rect(90, 20, 10, 10);
