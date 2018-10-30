@@ -9,17 +9,21 @@
 
 //Initialization function
 let size = 50;
+let size2 = 30;
 function setup() {
+  frameRate(3);
   createCanvas(500, 500);
-    noLoop();
-
 }
 function draw(){
-  fill(215, 200, 170);
-  for (var y = 0; y < 500; y+=200) {
+  for (var y = 0; y < 500; y+=50) {
     for (var x = 0; x < 500; x+=50) {
-      fill(255, 100, 50);
       rect(x, y, size, size);
+    }
+  }
+  for (var y2 = 10; y2 < 500; y2+=50) {
+    for (var x2 = 10; x2 < 500; x2+=50) {
+      fill(random(255), random(255), random(255));
+      rect(x2, y2, size2, size2);
     }
   }
 }
