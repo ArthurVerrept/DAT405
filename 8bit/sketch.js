@@ -6,7 +6,7 @@
 //In this example we see how to create a canvas, set and display
 //the frame rate of the rendering system, and use text to
 //display the frame count and rate on screen
-
+//
 //Initialization function
 function setup() {
   createCanvas(170, 170);
