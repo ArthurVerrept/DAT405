@@ -8,7 +8,7 @@
 //display the frame count and rate on screen
 
 //Initialization function
-  let size = 50;
+let size = 50;
 function setup() {
   createCanvas(500, 500);
     noLoop();
@@ -16,7 +16,10 @@ function setup() {
 }
 function draw(){
   fill(215, 200, 170);
-  for (var i = 0; i < 10; i++) {
-    rect(size*i, height/2, size, size);
+  for (var y = 0; y < 500; y+=200) {
+    for (var x = 0; x < 500; x+=50) {
+      fill(255, 100, 50);
+      rect(x, y, size, size);
+    }
   }
 }
