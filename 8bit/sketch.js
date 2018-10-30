@@ -12,9 +12,11 @@ function setup() {
   createCanvas(170, 170);
   background(0, 0, 0);
   frameRate(60);
-}
+  var newcolour = 1;
 
   function draw(){
+
+    noloop();
     //removing stroke
     noStroke();
 
@@ -51,7 +53,6 @@ function setup() {
     //line 7
     rect(40, 90, 20, 10);
     rect(70, 90, 20, 10);
-
     //D for dat!
     fill(255, 0, 0);
     rect(10, 110, 10, 40);
