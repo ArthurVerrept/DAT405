@@ -8,23 +8,19 @@
 //display the frame count and rate on screen
 
 //Initialization function
+var teapot;
+
+function preload() {
+  teapot = loadModel('assets/teapot.obj');
+}
+
 function setup() {
   createCanvas(100, 100, WEBGL);
 }
+
 function draw() {
-  background(0);
-  //move your mouse to change light position
-  var locX = mouseX - width / 2;
-  var locY = mouseY - height / 2;
-  // to set the light position,
-  // think of the world's coordinate as:
-  // -width/2,-height/2 -------- width/2,-height/2
-  //                |            |
-  //                |     0,0    |
-  //                |            |
-  // -width/2,height/2--------width/2,height/2
-  pointLight(250, 250, 250, locX, locY, 50);
-  ambientMaterial(250);
-  noStroke();
-  sphere(25);
-}
+  background(200);
+  rotateX(frameCount * 0.01);
+  rotateY(frameCount * 0.01);
+  model(teapot);
+}Vertically 
