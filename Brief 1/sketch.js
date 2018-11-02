@@ -8,19 +8,15 @@
 //display the frame count and rate on screen
 
 //Initialization function
-var teapot;
-
-function preload() {
-  teapot = loadModel('assets/teapot.obj');
+let randX = 0;
+let randY = 0;
+function setup(){
+  createCanvas(windowWidth, windowHeight);
+  randX = random(1280);
+  randY = random(599);
 }
-
-function setup() {
-  createCanvas(100, 100, WEBGL);
+function draw(){
+  randX = randX + random(-4, 4);
+  background(200, 200, 100);
+  triangle(0 + randX, 0 + randY, 58 + randX, 20 + randY, 86 + randX, 75 + randY);
 }
-
-function draw() {
-  background(200);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  model(teapot);
-}Vertically 
