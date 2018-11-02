@@ -11,12 +11,15 @@
 let randX = 0;
 let randY = 0;
 function setup(){
-  createCanvas(windowWidth, windowHeight);
-  randX = random(1280);
-  randY = random(599);
+  createCanvas(100, 100);
+  frameRate(60);
 }
-function draw(){
-  randX = randX + random(-4, 4);
-  background(200, 200, 100);
-  triangle(0 + randX, 0 + randY, 58 + randX, 20 + randY, 86 + randX, 75 + randY);
+  function draw() {
+    randX = randX + random(-2, 2);
+    randY = randY + random(-2, 2);
+    background(200);
+    rectMode(CENTER);
+    translate(width / 2, height / 2);
+    translate(randX, randY);
+    rect(0, 0, 20, 20);
 }
