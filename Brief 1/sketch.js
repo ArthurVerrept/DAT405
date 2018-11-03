@@ -17,6 +17,7 @@ function setup(){
 function draw() {
   noStroke();
   var aVal = aSlider.value();
+  text("" + aVal, aSlider.x + aSlider.width, 35);
   console.log(aVal)
   //calls functions to draw and then move point
   for (var i = 0; i < aVal; i++) {
@@ -27,8 +28,8 @@ function draw() {
 }
 //function to position and calibrate dots
 function dots(){
-  this.x = random(0, width);
-  this.y = random(0, height);
+  this.x = width/2;
+  this.y = height/2;
   this.xspeed;
   this.yspeed;
   /*
