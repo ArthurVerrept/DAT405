@@ -1,30 +1,34 @@
 //asks user how many circles they want on the screen
-var promptnum = prompt("How many circles on the screen?");
+var promptNum = prompt("How many circles maximum at once on the screen?");
 var points = [];
-
+var aSlider;
 //setup for canvas
 function setup(){
-  createCanvas(600, 400);
+  createCanvas(displayWidth, displayHeight);
   background(0, 100, 255);
-  for (var i = 0; i < promptnum; i++) {
+  for (var i = 0; i < promptNum; i++) {
     points[i] = new dots;
   }
+  aSlider = createSlider(0, promptNum, promptNum/10);
+  aSlider.position(20, 20);
 }
 
 //draw on canvas
 function draw() {
   noStroke();
-
+  var aVal = aSlider.value();
+  console.log(aVal)
   //calls functions to draw and then move point
-  for (var i = 0; i < promptnum; i++) {
-    points[i].drawPoint();
+  for (var i = 0; i < aVal; i++) {
     points[i].movePoint();
+    points[i].drawPoint();
+
   }
 }
 //function to position and calibrate dots
 function dots(){
-  this.x = width/2;
-  this.y = height/2;
+  this.x = random(0, width);
+  this.y = random(0, height);
   this.xspeed;
   this.yspeed;
   /*
@@ -53,7 +57,6 @@ function dots(){
     //adding random speed to both x and y co-ordinates
     this.x += this.xspeed;
     this.y += this.yspeed;
-      console.log(this.x, this.y)
     //changes direction of ball when it hits the side of the canvas
       if (this.x > width || this.x < 0) {
       this.xspeed = this.xspeed * -1;
