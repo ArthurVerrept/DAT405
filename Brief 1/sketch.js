@@ -21,15 +21,15 @@ function draw() {
   console.log(aVal)
   //calls functions to draw and then move point
   for (var i = 0; i < aVal; i++) {
-    points[i].movePoint();
     points[i].drawPoint();
+    points[i].movePoint();
 
   }
 }
 //function to position and calibrate dots
 function dots(){
-  this.x = width/2;
-  this.y = height/2;
+  this.x = random(0, width);
+  this.y = random(0, height);
   this.xspeed;
   this.yspeed;
   /*
@@ -58,12 +58,13 @@ function dots(){
     //adding random speed to both x and y co-ordinates
     this.x += this.xspeed;
     this.y += this.yspeed;
+    console.log(this.x, this.y);
     //changes direction of ball when it hits the side of the canvas
-      if (this.x > width || this.x < 0) {
-      this.xspeed = this.xspeed * -1;
+      if (this.x > width || this.x < 1) {
+      this.x = this.xspeed * -1;
       }
-      if (this.y > height || this.y < 0) {
-      this.yspeed = this.yspeed * -1;
+      else if (this.y > height || this.y < 1) {
+      this.y = this.yspeed * -1;
       }
     }
   }
