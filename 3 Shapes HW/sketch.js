@@ -1,30 +1,50 @@
-//https://github.com/stavrosdidakis/DAT-GAD-405_2017
-//https://p5js.org
+var prevKey = '0'
 
-//DAT405 / GAD405
-//01_ProjectSetup
-//In this example we see how to create a canvas, set and display
-//the frame rate of the rendering system, and use text to
-//display the frame count and rate on screen
-
-//Initialization function
-let size = 50;
-let size2 = 30;
-function setup() {
-  frameRate(3);
+function setup(){
   createCanvas(500, 500);
+  text("press a key between 1 & 3", 50, 50);
 }
+
 function draw(){
-  for (var y = 0; y < 500; y+=50) {
-    for (var x = 0; x < 500; x+=50) {
-      fill(random(255), random(255), random(255));
-      rect(x, y, size, size);
-    }
+  if ((keyIsPressed == true) && (key == '1') && (prevKey != key)) {
+    shape1();
   }
-  for (var y2 = 10; y2 < 500; y2+=50) {
-    for (var x2 = 10; x2 < 500; x2+=50) {
-      fill(random(255), random(255), random(255));
-      rect(x2, y2, size2, size2);
-    }
+  else if ((keyIsPressed == true) && (key == '2') && (prevKey != key)) {
+  shape2();
+  }
+  else if ((keyIsPressed == true) && (key == '3') && (prevKey != key)){
+    shape3();
+  }
+  //stops draw function looping through shapes
+  prevKey = key;
+}
+
+function shape1(){
+  background(240);
+  noStroke();
+  for (var i = 0; i < 20; i++) {
+      fill(random(175, 255), 0, 0, random(100, 200));
+    ellipse(random(width), random(height), 200, 200);
+  }
+}
+
+function shape2(){
+  background(240);
+  noStroke();
+  for (var i = 0; i < 20; i++) {
+    fill(0, random(175, 255), 0, random(100, 200));
+    rect(random(width), random(height), 100, 100);
+  }
+}
+
+function shape3(){
+  background(240);
+  strokeWeight(3);
+  for (var i = 0; i < 20; i++) {
+    var x2 = random(0, 500);
+    var x3 = random(0, 500);
+    fill(0, random(175, 255), 0, random(100, 200));
+    triangle(250, 250, random(500), random(500), random(500), random(3500));
+    console.log(x2, x3);
   }
 }
