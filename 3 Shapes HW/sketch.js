@@ -72,7 +72,7 @@ function shape2(){
   fill(random(175, 255), 0, random(50, 200), random(100, 200));
   triangle(x, y, x+random(40, 50), y+random(40, 50), x-random(40, 50), y+random(40, 50));
   stroke(255);
-  triangle(x, y, x+random(10, 30), y+random(10, 30), x-random(10, 30), y+random(10, 30));
+  triangle(x, y, x-random(10, 30), y-random(10, 30), x+random(10, 30), y-random(10, 30));
   prevKey = key;
 }
 
