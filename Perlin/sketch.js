@@ -12,7 +12,8 @@ function draw(){
     for (var x = 0; x < width; x++) {
       y = map(noise(xoff), 0, 1, 0, height);
       var colour = map(y, 0, height, 0, 255);
-      console.log(colour);
+      var scolour = map(y, 0, height, 0, 255);
+      stroke(scolour);
       fill(0, 0, 0, colour);
       vertex(x, y);
       xoff += 0.01;
