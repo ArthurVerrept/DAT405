@@ -1,26 +1,33 @@
-//https://github.com/stavrosdidakis/DAT-GAD-405_2017
-//https://p5js.org
-
-//DAT405 / GAD405
-//00_Template
-//The purpose of this sketch is to provide a basic template
-//for P5.js projects
-
-//Initialization function
-function setup() {
-  //Print a message to the console - to view using Chrome:
-  //View > Developer > Developer Tools > Console
-  console.log("Initialization: OK")
-  createCanvas(500,500);
+let bubble;
+var xoff = 0;
+function setup(){
+  createCanvas(400,400);
+  //background(140);
+  bubble = new Bubble;
 }
 
-//Rendering function
-function draw() {
-  //Set a background color
-  background(255, 0, 255);
+function draw(){
+  background(140);
+  bubble.move();
+  bubble.show();
+  xoff += 0.01
+}
 
-  //Print a message to the console - to view using Chrome:
-  //View > Developer > Developer Tools > Console
-  console.log("Rendering...")
-  noLoop();
+class Bubble {
+  constructor(){
+  this.x = 100;
+  this.y = 101;
+  }
+
+  move(){
+    this.x = this.x + map(noise(xoff), 0, 1, -1, 1);
+    this.y = this.y + map(noise(xoff + 10000), 0, 1, -1, 1);
+  }
+
+  show(){
+    stroke(255);
+    strokeWeight(4);
+    noFill();
+    ellipse(this.x, this.y, 24, 24);
+  }
 }
