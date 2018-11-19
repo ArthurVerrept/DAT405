@@ -65,7 +65,7 @@ function notPressed(){
       //assigns y co-ordinate based on noise map f xoff
       y = map(noise(xoff), 0, 1, 0, height);
       //sets up RGB(A) of stroke and fill
-      var colour = map(y, 0, height, 0, 255);
+      var colour = map(y, 0, height, 0, 100);
       var scolour = map(y, 0, height, 0, 255);
       //sets colours
       stroke(scolour);
