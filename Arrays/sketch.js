@@ -12,7 +12,5 @@ function draw(){
   cars[0] = "ford";
   text(cars[0], 220, 220);
 
-  text(cars.length,240,240);
-
-
+  text(cars.length, 240, 240);
 }
