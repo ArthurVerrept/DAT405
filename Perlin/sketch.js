@@ -8,9 +8,11 @@ var rot = 0;
 function setup(){
   createCanvas(594, 841);
   angleMode(DEGREES);
+  // Create ball objects(startX,startY,Size)
 }
 
 function draw(){
+
   //checks whether mouse is pressed
   if (mouseIsPressed) {
     //calls the press function
@@ -22,6 +24,8 @@ function draw(){
     notPressed();
   }
 }
+
+
 
 function  press(){
   //begins shape
@@ -36,7 +40,7 @@ function  press(){
       var rcolour = map(noise(xoff), 0, 1, 0, 255);
       var gcolour = map(noise(xoff+1000), 0, 1, 0, 255);
       var bcolour = map(noise(xoff+10000), 0, 1, 0, 255);
-      var acolour = map(mouseY, 0, height, 0, 10);
+      var acolour = map(mouseY, 0, height, 0, 5);
       //rotates by 1 degrees every frame
       rot = rot + 1;
       //sets stroke colour to perlin noise
@@ -56,6 +60,7 @@ function  press(){
 
 function notPressed(){
   //clears background
+  sWidth = map(mouseX, 0, 1, 50, 500);
   background(255);
   beginShape();
   //sets xoff to move amount
@@ -69,7 +74,7 @@ function notPressed(){
       var scolour = map(y, 0, height, 0, 255);
       //sets colours
       stroke(scolour);
-      fill(0, 0, 0, colour);
+      noFill();
       //draws vertexes
       vertex(x, y);
       //maps speed of xoff in noise to mouseY coordinate
@@ -79,4 +84,4 @@ function notPressed(){
     endShape();
     //sets move speed to mouseX coordinate
     move += map(mouseX, 0, width, 0.0001, 0.01);
-}
+  }
