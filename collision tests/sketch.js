@@ -1,8 +1,13 @@
+//creates hit variable
 var hit = false;
-var poly = [];
-var move = 0;
-//Define ball objects
 
+//creates polygon array
+var poly = [];
+
+//sets move to 0
+var move = 0;
+
+//Define ball array
 var balls = [];
 
 //gravity variable
@@ -12,31 +17,31 @@ function setup() {
 	createCanvas(594, 841);
 	collideDebug(true)
 	frameRate(60);
-
-
-	for (var i = 0; i < width/24; i++) {
-		balls.push(new Ball(i*24, 20, 24));
+	//creates multiple ellipses on screen
+	for (var i = 0; i < width/50; i++) {
+		balls.push(new Ball(i*50, 20, 24));
 	}
-
 }
 
 function draw() {
 	background(255);
+	//calls not pressed function
 	notPressed();
+	noFill();
+	beginShape();
+	//draw the polygon from the created Vectors created in notPressed function
+	for(i=0; i < poly.length; i++){
+		vertex(poly[i].x,poly[i].y);
+	}
+	//closes ploygon on top two corners
+	vertex(595, -1);
+	vertex(-1, -1);
+	endShape(CLOSE);
+	//updates balls
 	for (var i = 0; i < balls.length; i++) { // Whatever the length of that array, update and display all of the objects.
 		balls[i].update();
 		balls[i].display();
 	}
-	noFill();
-	push()
-	beginShape();
-	//draw the polygon from the created Vectors above.
-	for(i=0; i < poly.length; i++){
-		vertex(poly[i].x,poly[i].y);
-	}
-	vertex(595, -1);
-	vertex(-1, -1);
-	endShape(CLOSE);
 }
 
 
@@ -83,9 +88,5 @@ function notPressed(){
 
     // Add gravity to speed
     this.speed = this.speed + gravity;
-
-    // If square reaches the bottom
-    // Reverse speed
-
   }
 }
