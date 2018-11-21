@@ -69,7 +69,10 @@ function notPressed(){
 
   this.display = function() {
     // Display the square
-    fill(175);
+		var colourr = map(this.y, 0, height/3, 0, 255);
+		var colourg = map(this.y, height/3, 0, 0, 255);
+		var colourb = map(this.y, 0, height/3 * -1, 0, 225);
+    fill(colourr, colourg, colourb);
     stroke(0);
     ellipse(this.x,this.y,this.w,this.w);
   }
