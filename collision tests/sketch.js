@@ -4,6 +4,8 @@ var hit2 = false;
 //creates polygon array
 var poly = [];
 
+var lines = [];
+
 //sets move to 0
 var move = 0;
 
@@ -38,9 +40,6 @@ function draw() {
 	for(i=0; i < poly.length; i++){
 		vertex(poly[i].x,poly[i].y);
 	}
-	//closes ploygon on top two corners
-	//vertex(595, -1);
-	//vertex(-1, -1);
 	endShape(CLOSE);
 	//updates balls
 	for (var i = 0; i < balls.length; i++) { // Whatever the length of that array, update and display all of the objects.
@@ -51,6 +50,14 @@ function draw() {
 		balls2[i].updateU();
 		balls2[i].displayU();
 	}
+	noFill();
+	stroke(100);
+	beginShape();
+	for (var i = 0; i < lines.length; i++) {
+		vertex(lines[i].x, lines[i].y);
+	}
+	endShape();
+	lines = []
 }
 
 
@@ -63,15 +70,11 @@ function notPressed(){
 	var colourB = map(noise(xoff+10000), 0, 1, 0, 225);
 	fill(colourR,colourG,colourB);
 	noStroke();
-  beginShape();
-		for (var x = 0; x < width+2; x++) {
-
+		for (var x = 0; x < width; x++) {
 			y = map(noise(xoff), 0, 1, 0, height);
 			poly[x] = createVector(x, y);
-
 			xoff += 0.002;
 		}
-    endShape();
 		move += 0.002;
     //sets move speed to mouseX coordinate
     //move += map(mouseX, 0, width, 0.0001, 0.01);
@@ -114,10 +117,10 @@ function notPressed(){
 		var colourR = map(this.y, height, height/2, 0, 255);
 		var colourG = map(this.y, height, height/2, 0, 255);
 		var colourB = map(this.y, height, height/2, 255, 0);
-
     fill(colourB, colourR, colourG);
     noStroke(0);
     ellipse(this.x,this.y,this.w,this.w);
+		lines.push(createVector(this.x,this.y));
   }
 
   this.updateU = function() {
@@ -133,5 +136,6 @@ function notPressed(){
 
     // Add gravity to speed
     this.speed2 = this.speed2+ gravity2;
+
   }
 }
