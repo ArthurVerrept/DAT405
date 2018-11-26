@@ -3,7 +3,7 @@ var hit = false;
 var hit2 = false;
 
 //Creates gravity variables for both row of ellipses
-var gravity = 0.1;
+var gravity = 0;
 var gravity2 = -0.1;
 
 //Creates opacity variable
@@ -11,6 +11,9 @@ var o = 50;
 
 //Sets move seed of polygon to 0
 var move = 0;
+
+//Ball bounce distance for collisions
+var distance;
 
 //Creates polygon array to store perlin shape vectors
 var poly = [];
@@ -22,6 +25,7 @@ var lines2 = [];
 //Creates ball array to hold vectors of ellipses
 var balls = [];
 var balls2 = [];
+var params;
 
 function setup() {
 	createCanvas(594, 841);
@@ -29,27 +33,41 @@ function setup() {
 	//Draws ellipse between colliding objects
 	collideDebug(true);
 
-	//Creates button to call newLines function and create new line of ellipses
-	button = createButton('New Lines');
-  button.position(width, 20);
-	button.size(80, 40);
-  button.mousePressed(newLines);
-
 	//Creates new button to call change funtion for fading ellipses behind rects
 	button2 = createButton('Blur on&off');
 	button2.position(width, 60);
 	button2.size(80, 40);
 	button2.mousePressed(change);
 
-}
+
+		params = {
+		gravity: 0.1,
+		distance: 24
+	}
+
+ params.resetAnimation =
+	              function() {
+	  newLines();
+	       };
+
+	var gui = new dat.GUI();
+	gui.add(params, 'gravity', 0.01, 0.2);
+	gui.add(params, 'distance', 24, 100);
+	gui.add(params, 'resetAnimation')
+};
 
 
 
 function draw() {
+	gravity = params.gravity;
+	gravity2 = params.gravity * -1;
+	distance = params.distance;
+
 	//Fills rectangle with colour white and opacity of variable o
 	fill(255, o);
 	//Creates rectangle of full canvas size to fade ellipses
 	rect(0, 0, width, height);
+	console.log(params.gravity);
 
 	//Calls not pressed function to fill poly array with shape vectors and set fill colour
 	notPressed();
@@ -136,8 +154,8 @@ function notPressed(){
   }
 
   this.update = function() {
-			//Sets hit variable to true or false depending on if ellipse has hit polygon
-			hit = collideCirclePoly(this.x, this.y, 24, poly);
+			//Sets hit variable to true or false depending on if ellipse has hit polygon using distance parameter from GUIs
+			hit = collideCirclePoly(this.x, this.y, distance, poly);
 
 			//Checks if ellipse hit the polygon
 			if (hit == true) {
@@ -170,8 +188,8 @@ function notPressed(){
   }
 
   this.updateBot = function() {
-			//Sets hit2 variable to true or false depending on if ellipse has hit polygon
-			hit2 = collideCirclePoly(this.x, this.y, 24, poly);
+			//Sets hit2 variable to true or false depending on if ellipse has hit polygon using distance parameter from GUI
+			hit2 = collideCirclePoly(this.x, this.y, distance, poly);
 			if (hit2 == true) {
 				//If there was a collision and speed under -1
 				if (this.speed2 > -1) {
@@ -192,7 +210,6 @@ function notPressed(){
 
 
 function drawLines(){
-
 	//Set no fill
 	noFill();
 	//Set stroke colour
