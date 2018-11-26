@@ -2,6 +2,16 @@
 var hit = false;
 var hit2 = false;
 
+//Creates gravity variables for both row of ellipses
+var gravity = 0.1;
+var gravity2 = -0.1;
+
+//Creates opacity variable
+var o = 50;
+
+//Sets move seed of polygon to 0
+var move = 0;
+
 //Creates polygon array to store perlin shape vectors
 var poly = [];
 
@@ -9,46 +19,37 @@ var poly = [];
 var lines = [];
 var lines2 = [];
 
-//Sets move seed of polygon to 0
-var move = 0;
-
 //Creates ball array to hold vectors of ellipses
 var balls = [];
 var balls2 = [];
 
-//Creates gravity variables for both row of ellipses
-var gravity = 0.1;
-var gravity2 = -0.1;
-
-
-
 function setup() {
 	createCanvas(594, 841);
-
-	//draws ellipse between colliding objects
+	newLines();
+	//Draws ellipse between colliding objects
 	collideDebug(true);
 
-	//creates button to call setup function and create new line of ellipses
-	button = createButton('NEW');
-  button.position(0, 20);
-	button.size(40, 20);
-  button.mousePressed(setup);
+	//Creates button to call newLines function and create new line of ellipses
+	button = createButton('New Lines');
+  button.position(width, 20);
+	button.size(80, 40);
+  button.mousePressed(newLines);
 
-	//Creates width/15 amount of elipses on screen
-	for (var i = 0; i < width/15; i++) {
-		//Pushes x and y coordinates to arrays ball and ball2
-		//Calls ball function with x, y, and speed coordinates
-		//	one for top row and one for bottom ro of ellipses
-		balls.push(new Ball(i*15, 10, 15));
-		balls2.push(new Ball(i*15, 845, 15));
-	}
+	//Creates new button to call change funtion for fading ellipses behind rects
+	button2 = createButton('Blur on&off');
+	button2.position(width, 60);
+	button2.size(80, 40);
+	button2.mousePressed(change);
+
 }
 
 
 
 function draw() {
-	//Sets background every loop to reset canvas
-	background(255);
+	//Fills rectangle with colour white and opacity of variable o
+	fill(255, o);
+	//Creates rectangle of full canvas size to fade ellipses
+	rect(0, 0, width, height);
 
 	//Calls not pressed function to fill poly array with shape vectors and set fill colour
 	notPressed();
@@ -233,5 +234,28 @@ function drawLines(){
 	else{
 		lines = [];
 		lines2 = [];
+	}
+}
+
+function newLines(){
+	//Creates width/15 amount of elipses on screen
+	for (var i = 0; i < width/15; i++) {
+		//Pushes x and y coordinates to arrays ball and ball2
+		//Calls ball function with x, y, and speed coordinates
+		//	one for top row and one for bottom ro of ellipses
+		balls.push(new Ball(i*15, 10, 15));
+		balls2.push(new Ball(i*15, 845, 15));
+	}
+}
+
+//Function to change opacity on button press
+function change(){
+	//If the value of o is 50 change to 255
+	if (o == 50) {
+		o = 255;
+	}
+	//If the value of o is 255 change to 50
+	else {
+		o = 50;
 	}
 }
