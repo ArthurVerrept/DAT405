@@ -17,7 +17,7 @@ function setup() {
 function draw(){
   for (var y = 0; y < 500; y+=50) {
     for (var x = 0; x < 500; x+=50) {
-      fill(random(255), random(255), random(255));
+      fill(220, 220, 0);
       rect(x, y, size, size);
     }
   }
