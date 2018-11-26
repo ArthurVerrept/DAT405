@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+
+}
+
+body {
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  <style> .main { position: absolute; top: 100px; left: 100px; } </style> 
+
+}

@@ -33,27 +33,34 @@ function setup() {
 	//Draws ellipse between colliding objects
 	collideDebug(true);
 
-	//Creates new button to call change funtion for fading ellipses behind rects
-	button2 = createButton('Blur on&off');
-	button2.position(width, 60);
-	button2.size(80, 40);
-	button2.mousePressed(change);
-
 
 		params = {
 		gravity: 0.1,
-		distance: 24
+		distance: 30
 	}
 
- params.resetAnimation =
+ params.newLines =
 	              function() {
 	  newLines();
 	       };
 
+	params.blur =
+					        function() {
+		change();
+				};
+
+		params.reset =
+								   function() {
+		reset();
+				};
+
 	var gui = new dat.GUI();
-	gui.add(params, 'gravity', 0.01, 0.2);
-	gui.add(params, 'distance', 24, 100);
-	gui.add(params, 'resetAnimation')
+	gui.domElement.id = 'gui';
+	gui.add(params, 'gravity', 0.01, 0.2).name('Gravity');
+	gui.add(params, 'distance', 30, 100).name('Distance');
+	gui.add(params, 'newLines').name('New Lines');
+	gui.add(params, 'blur').name('Blur on/off');
+	gui.add(params, 'reset').name('reset');
 };
 
 
@@ -67,7 +74,6 @@ function draw() {
 	fill(255, o);
 	//Creates rectangle of full canvas size to fade ellipses
 	rect(0, 0, width, height);
-	console.log(params.gravity);
 
 	//Calls not pressed function to fill poly array with shape vectors and set fill colour
 	notPressed();
@@ -114,7 +120,7 @@ function notPressed(){
 	//Sets fill to mapped colours
 	fill(colourR,colourG,colourB);
 
-	//turns off stroke lines
+	//turns off  lines
 	noStroke();
 
 	//Goes through every x from 0 to width of canvas
@@ -256,7 +262,7 @@ function drawLines(){
 
 function newLines(){
 	//Creates width/15 amount of elipses on screen
-	for (var i = 0; i < width/15; i++) {
+	for (var i = 0.75; i < width/15; i++) {
 		//Pushes x and y coordinates to arrays ball and ball2
 		//Calls ball function with x, y, and speed coordinates
 		//	one for top row and one for bottom ro of ellipses
@@ -275,4 +281,15 @@ function change(){
 	else {
 		o = 50;
 	}
+}
+
+function reset(){
+	lines = [];
+	lines2 = [];
+
+	balls = [];
+	balls2 = [];
+	newLines();
+	o = 255;
+	change();
 }
