@@ -65,7 +65,7 @@ function setup() {
 	gui.add(params, 'distance', 30, 100).name('Distance');
 	gui.add(params, 'newLine').name('New Lines');
 	gui.add(params, 'blur').name('Blur on/off');
-	gui.add(params, 'reset').name('reset');
+	gui.add(params, 'reset').name('Reset');
 };
 
 
