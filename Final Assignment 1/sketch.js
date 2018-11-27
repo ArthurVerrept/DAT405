@@ -33,32 +33,37 @@ function setup() {
 	//Draws ellipse between colliding objects
 	collideDebug(true);
 
-
-		params = {
-		gravity: 0.1,
-		distance: 30
+	//Creates params and assigns certain values
+	params = {
+	gravity: 0.1,
+	distance: 30
 	}
 
- params.newLines =
-	              function() {
+	//Creates new function in params called newLine
+ 	params.newLine = function() {
+		//Calls newLines function to make new line of ellipses
 	  newLines();
-	       };
+	};
 
-	params.blur =
-					        function() {
+	//Creates new function in params called blur
+	params.blur = function() {
+		//Calls change function to toggle fade
 		change();
-				};
+	};
 
-		params.reset =
-								   function() {
+	//Creates new function in params called reset
+	params.reset = function() {
+		//Calls reset to reset the program
 		reset();
-				};
+	};
 
+	//Creates variable gui and assignes a new gui
 	var gui = new dat.GUI();
-	gui.domElement.id = 'gui';
+
+	//Adds all the buttons and sliders to gui
 	gui.add(params, 'gravity', 0.01, 0.2).name('Gravity');
 	gui.add(params, 'distance', 30, 100).name('Distance');
-	gui.add(params, 'newLines').name('New Lines');
+	gui.add(params, 'newLine').name('New Lines');
 	gui.add(params, 'blur').name('Blur on/off');
 	gui.add(params, 'reset').name('reset');
 };
@@ -66,6 +71,7 @@ function setup() {
 
 
 function draw() {
+	//Assigns variables the input data in the gui
 	gravity = params.gravity;
 	gravity2 = params.gravity * -1;
 	distance = params.distance;
@@ -283,13 +289,22 @@ function change(){
 	}
 }
 
+//Function to reset all
 function reset(){
+	//Clears line array to clear all lines off the screen
 	lines = [];
 	lines2 = [];
 
+	//Clears ball arrays to clear all ellipses off the screen
 	balls = [];
 	balls2 = [];
+
+	//Calls newLines function to create the new ellipses
 	newLines();
+
+	//Sets o to 255 so that when program always resets it always has blur/fade turned on
 	o = 255;
+
+	//Calls the change function to turn blur back on/ keep it on
 	change();
 }
