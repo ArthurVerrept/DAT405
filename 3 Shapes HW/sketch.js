@@ -5,6 +5,7 @@ var prevKey = '0';
 function setup(){
   createCanvas(500, 500);
   frameRate(15);
+  text('press key 1, 2 or 3', 20, height/2);
 }
 
 function draw(){
