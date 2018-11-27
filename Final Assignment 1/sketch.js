@@ -63,7 +63,7 @@ function setup() {
 	//Adds all the buttons and sliders to gui
 	gui.add(params, 'gravity', 0.01, 0.2).name('Gravity');
 	gui.add(params, 'distance', 30, 100).name('Distance');
-	gui.add(params, 'newLine').name('New Lines');
+	gui.add(params, 'newLine').name('New balls');
 	gui.add(params, 'blur').name('Blur on/off');
 	gui.add(params, 'reset').name('Reset');
 };
